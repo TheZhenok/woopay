@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  server:
+    build: ./
+    container_name: flask_evg
+    depends_on:
+      - "postgres"
+    ports:
+      - "8080:8080"
+
+  postgres:
+    container_name: db_woopay
+    image: postgres:14.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_USER: postgres
+      POSTGRES_DB: woopay_test_ex
+      PGDATA: /home/postgres/data
+      POSTGRES_INITDB_ARGS: "-A md5"
+    ports:
+      - "54231:5432"
+
+
